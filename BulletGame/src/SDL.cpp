@@ -32,17 +32,32 @@ void SDL::start()
 {
 	SDL_Event e;
 	bool quit = false;
+	Object player(20,20,1,loadTexture("src/dot.bmp"), SCREEN_HEIGHT, SCREEN_WIDTH);
+	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	while (!quit)
 	{
 		while (SDL_PollEvent(&e) != 0)
 		{
+			player.handleEvent(e);
 			//User requests quit
 			if (e.type == SDL_QUIT)
 			{
 				quit = true;
 			}
 		}
+		//Move the dot
+		player.move();
+		//rotate towards mouse
+		player.rotate();
+		//Clear screen
+		SDL_RenderClear(gRenderer);
+		//Render objects
+		player.render(gRenderer);
+		//Update screen
+		SDL_RenderPresent(gRenderer);
 	}
+	player.free();
+	close();
 }
 
 void SDL::close()
@@ -51,4 +66,27 @@ void SDL::close()
 	SDL_DestroyWindow(gWindow);
 	gWindow = NULL;
 	SDL_Quit();
+}
+
+SDL_Texture* SDL::loadTexture(std::string path)
+{
+	//texture to return
+	SDL_Texture* newTexture = NULL;
+	//Load image to texture
+	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
+	if (loadedSurface == NULL)
+	{
+		IMG_GetError();
+		return newTexture;
+	}
+	//Create texture from loaded surface
+	newTexture = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
+	if (newTexture == NULL)
+	{
+		printf(SDL_GetError());
+		return newTexture;
+	}
+	//free the old surface
+	SDL_FreeSurface(loadedSurface);
+	return newTexture;
 }

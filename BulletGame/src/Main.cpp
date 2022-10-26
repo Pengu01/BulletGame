@@ -1,6 +1,5 @@
 #include "SDL.h"
 
-//MAIN
 int main(int argc, char* args[])
 {
 	SDL sdl;

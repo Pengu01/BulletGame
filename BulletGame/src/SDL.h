@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <SDL_image.h>
 #include <string>
+#include "Object.h"
 
 class SDL
 {
@@ -27,5 +28,7 @@ public:
 	void start();
 	//Close and free
 	void close();
+	//loadtexture
+	SDL_Texture* loadTexture(std::string path);
 private:
 };
