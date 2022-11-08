@@ -33,7 +33,7 @@ void SDL::start()
 {
 	SDL_Event e;
 	bool quit = false;
-	Object player(20,20,1,loadTexture("src/dot.bmp"));
+	Player player(20,20,1,loadTexture("src/dot.bmp"));
 	gBulletTexture = loadTexture("src/bullet.bmp");
 	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	while (!quit)

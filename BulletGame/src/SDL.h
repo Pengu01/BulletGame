@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <SDL_image.h>
 #include <string>
-#include "Object.h"
+#include "Player.h"
 #include <vector>
 
 class SDL

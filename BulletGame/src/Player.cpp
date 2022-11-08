@@ -1,8 +1,8 @@
-#include "Object.h"
+#include "Player.h"
 
-Object::Object(int width, int height, int velocity, SDL_Texture* texture)
+Player::Player(int width, int height, int velocity, SDL_Texture* texture)
 {
-	//sets variables for the object
+	//sets variables for the Player
 	OBJ_WIDTH = width;
 	OBJ_HEIGHT = height;
 	OBJ_VEL = velocity;
@@ -13,7 +13,7 @@ Object::Object(int width, int height, int velocity, SDL_Texture* texture)
 	objTexture = texture;
 }
 
-void Object::handleEvent(SDL_Event& e)
+void Player::handleEvent(SDL_Event& e)
 {
 	//gets the inouts and adjusts the speed accordingly
 	if (e.type == SDL_KEYDOWN && e.key.repeat == 0)
@@ -38,19 +38,19 @@ void Object::handleEvent(SDL_Event& e)
 	}
 }
 
-void Object::move()
+void Player::move()
 {
 	float diagonal = 1.0f;
 	if(mVelX*mVelY != 0) diagonal = 0.7071f;
 	mPosX += mVelX * diagonal;
-	//If the object went too far to the left or right
+	//If the Player went too far to the left or right
 	if ((mPosX < 0) || (mPosX + OBJ_WIDTH > SDL::SCREEN_WIDTH))
 	{
 		//Move back
 		mPosX -= mVelX * diagonal;
 	}
 	mPosY += mVelY * diagonal;
-	//If the object went too far up or down
+	//If the Player went too far up or down
 	if ((mPosY < 0) || (mPosY + OBJ_HEIGHT > SDL::SCREEN_HEIGHT))
 	{
 		//Move back
@@ -59,7 +59,7 @@ void Object::move()
 	return;
 }
 
-void Object::render(SDL_Renderer* renderer)
+void Player::render(SDL_Renderer* renderer)
 {
 	SDL_Rect renderQuad = { mPosX, mPosY, OBJ_WIDTH, OBJ_HEIGHT };
 
@@ -74,7 +74,7 @@ void Object::render(SDL_Renderer* renderer)
 	SDL_RenderCopyEx(renderer, objTexture, clip, &renderQuad, angle, center, flip);
 }
 
-void Object::rotate()
+void Player::rotate()
 {
 	int x, y;
 	//gets the mouse position
@@ -87,7 +87,7 @@ void Object::rotate()
 	
 }
 
-void Object::free()
+void Player::free()
 {
 	SDL_DestroyTexture(objTexture);
 }

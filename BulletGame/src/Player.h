@@ -1,11 +1,11 @@
 #pragma once
 #include "SDL.h"
 
-class Object
+class Player
 {
 public:
-	//constructor to personalise the object
-	Object(int width, int height, int velocity, SDL_Texture* objTexture);
+	//constructor to personalise the Player
+	Player(int width, int height, int velocity, SDL_Texture* objTexture);
 	//event handler to get inputs
 	void handleEvent(SDL_Event& e);
 	//changing the x and y according to velocity
