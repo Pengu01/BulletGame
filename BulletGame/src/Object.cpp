@@ -1,10 +1,8 @@
 #include "Object.h"
 
-Object::Object(int width, int height, int velocity, SDL_Texture* texture, int scrHeight, int scrWidth)
+Object::Object(int width, int height, int velocity, SDL_Texture* texture)
 {
 	//sets variables for the object
-	SCREEN_HEIGHT = scrHeight;
-	SCREEN_WIDTH = scrWidth;
 	OBJ_WIDTH = width;
 	OBJ_HEIGHT = height;
 	OBJ_VEL = velocity;
@@ -46,14 +44,14 @@ void Object::move()
 	if(mVelX*mVelY != 0) diagonal = 0.7071f;
 	mPosX += mVelX * diagonal;
 	//If the object went too far to the left or right
-	if ((mPosX < 0) || (mPosX + OBJ_WIDTH > SCREEN_WIDTH))
+	if ((mPosX < 0) || (mPosX + OBJ_WIDTH > SDL::SCREEN_WIDTH))
 	{
 		//Move back
 		mPosX -= mVelX * diagonal;
 	}
 	mPosY += mVelY * diagonal;
 	//If the object went too far up or down
-	if ((mPosY < 0) || (mPosY + OBJ_HEIGHT > SCREEN_HEIGHT))
+	if ((mPosY < 0) || (mPosY + OBJ_HEIGHT > SDL::SCREEN_HEIGHT))
 	{
 		//Move back
 		mPosY -= mVelY * diagonal;
@@ -86,6 +84,7 @@ void Object::rotate()
 	float vecY = y-mPosY;
 	//finds the angle for correct alignment
 	angle = atan2(vecY, vecX) * 180 / M_PI+90;
+	
 }
 
 void Object::free()

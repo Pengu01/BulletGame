@@ -136,10 +136,12 @@
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\SDL.cpp" />
+    <ClCompile Include="src\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Object.h" />
     <ClInclude Include="src\SDL.h" />
+    <ClInclude Include="src\Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

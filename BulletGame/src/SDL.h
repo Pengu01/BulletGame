@@ -5,13 +5,14 @@
 #include <SDL_image.h>
 #include <string>
 #include "Object.h"
+#include <vector>
 
 class SDL
 {
 public:
 	//Game window size
-	const int SCREEN_WIDTH = 640;
-	const int SCREEN_HEIGHT = 480;
+	static const int SCREEN_WIDTH = 640;
+	static const int SCREEN_HEIGHT = 480;
 	//Game window
 	SDL_Window* gWindow = NULL;
 	//Surface of game window
@@ -22,6 +23,8 @@ public:
 	SDL_Renderer* gRenderer = NULL;
 	//start up SDL
 	bool initiate();
+	//Bullettexture
+	SDL_Texture* gBulletTexture = NULL;
 	//load textures
 	bool loadassets();
 	//gameloop
@@ -31,4 +34,5 @@ public:
 	//loadtexture
 	SDL_Texture* loadTexture(std::string path);
 private:
+	Uint64 gTime = 0;
 };

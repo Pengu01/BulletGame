@@ -5,7 +5,7 @@ class Object
 {
 public:
 	//constructor to personalise the object
-	Object(int width, int height, int velocity, SDL_Texture* objTexture, int scrHeight, int scrWidth);
+	Object(int width, int height, int velocity, SDL_Texture* objTexture);
 	//event handler to get inputs
 	void handleEvent(SDL_Event& e);
 	//changing the x and y according to velocity
@@ -17,7 +17,7 @@ public:
 	//frees the texture
 	void free();
 private:
-	int SCREEN_HEIGHT, SCREEN_WIDTH, OBJ_WIDTH, OBJ_HEIGHT, OBJ_VEL;
+	int OBJ_WIDTH, OBJ_HEIGHT, OBJ_VEL;
 	float mPosX, mPosY;
 	float mVelX, mVelY;
 	SDL_Texture* objTexture;

@@ -20,6 +20,7 @@ bool SDL::initiate()
 		return false;
 	}
 	gScreenSurface = SDL_GetWindowSurface(gWindow);
+	printf("Time: %d\n", (SDL_GetTicks64() - gTime));
 	return true;
 }
 
@@ -32,7 +33,8 @@ void SDL::start()
 {
 	SDL_Event e;
 	bool quit = false;
-	Object player(20,20,1,loadTexture("src/dot.bmp"), SCREEN_HEIGHT, SCREEN_WIDTH);
+	Object player(20,20,1,loadTexture("src/dot.bmp"));
+	gBulletTexture = loadTexture("src/bullet.bmp");
 	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	while (!quit)
 	{
@@ -45,6 +47,8 @@ void SDL::start()
 				quit = true;
 			}
 		}
+		//updatetime
+		gTime = SDL_GetTicks64();
 		//Move the dot
 		player.move();
 		//rotate towards mouse
@@ -62,6 +66,7 @@ void SDL::start()
 
 void SDL::close()
 {
+	SDL_DestroyTexture(gBulletTexture);
 	SDL_DestroyRenderer(gRenderer);
 	SDL_DestroyWindow(gWindow);
 	gWindow = NULL;
